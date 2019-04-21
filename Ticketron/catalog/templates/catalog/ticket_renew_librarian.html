@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Renew: {{task.ticket.title}}</h1>
+    <p>Employee: {{task.employee}}</p>
+    <p{% if task.is_overdue %} class="text-danger"{% endif %}>Due date: {{task.scheduled_day}}</p>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}

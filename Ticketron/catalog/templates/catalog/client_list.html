@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Client List</h1>
+
+{% if author_list %}
+  <ul>
+
+  {% for client in author_list %}
+    <li>
+      <a href="{{ client.get_absolute_url }}">
+      {{ client }} ({{client.client_since}} -
+      </a>
+    </li>
+  {% endfor %}
+
+ </ul>
+{% else %}
+  <p>There are no authors available.</p>
+{% endif %}
+        
+        
+        
+{% endblock %}
+
+
+

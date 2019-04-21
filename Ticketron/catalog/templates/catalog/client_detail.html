@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Client: {{ client }} </h1>
+<p>{{client.client_since}} </p>
+
+<div style="margin-left:20px;margin-top:20px">
+<h4>Tickets</h4>
+
+<dl>
+{% for ticket in client.ticket_set.all %}
+  <dt><a href="{% url 'ticket-detail' ticket.pk %}">{{ticket}}</a> ({{ticket.task_set.all.count}})</dt>
+  <dd>{{ticket.summary}}</dd>
+{% endfor %}
+</dl>
+
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>All Borrowed Tickets</h1>
+
+    {% if task_list %}
+    <ul>
+
+      {% for ticketinst in task_list %}
+      <li class="{% if ticketinst.is_overdue %}text-danger{% endif %}">
+        <a href="{% url 'ticket-detail' ticketinst.ticket.pk %}">{{ticketinst.ticket.title}}</a> ({{ ticketinst.scheduled_day }}) {% if user.is_staff %}- {{ ticketinst.employee }}{% endif %} {% if perms.catalog.can_mark_returned %}- <a href="{% url 'renew-ticket-librarian' ticketinst.id %}">Renew</a>  {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no tickets borrowed.</p>
+    {% endif %}       
+{% endblock %}
